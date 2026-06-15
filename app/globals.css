@@ -1,0 +1,110 @@
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,800,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&display=swap");
+
+@import "tailwindcss";
+
+:root {
+  --font-satoshi: "Satoshi", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-figtree: "Figtree", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --bb-green: #00bf63;
+  --bb-deep: #007a3d;
+  --bb-forest: #1b5e20;
+  --bb-mint: #a6f4c5;
+}
+
+@theme inline {
+  --font-sans: var(--font-figtree);
+  --font-display: var(--font-satoshi);
+  --font-weight-medium: 400;
+  --font-weight-semibold: 500;
+  --font-weight-bold: 600;
+  --font-weight-extrabold: 700;
+}
+
+body {
+  background: #ffffff;
+  color: #000000;
+  font-family: var(--font-figtree);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-satoshi);
+}
+
+.landing-scene {
+  background: #ffffff;
+}
+
+.glass-section {
+  position: relative;
+  width: min(calc(100% - 3rem), 1180px);
+  margin: 1.25rem auto;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 2rem;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.66),
+    rgba(255, 255, 255, 0.38)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.18),
+    0 24px 70px rgba(25, 79, 54, 0.12);
+  backdrop-filter: blur(24px) saturate(145%);
+  -webkit-backdrop-filter: blur(24px) saturate(145%);
+}
+
+.glass-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.38),
+    transparent 32%,
+    transparent 72%,
+    rgba(255, 255, 255, 0.16)
+  );
+}
+
+.glass-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.glass-card {
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 14px 38px rgba(25, 79, 54, 0.1);
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+}
+
+@media (max-width: 640px) {
+  .glass-section {
+    width: calc(100% - 1.5rem);
+    margin-block: 0.75rem;
+    border-radius: 1.5rem;
+  }
+}
+
+::selection {
+  background: rgba(0, 191, 99, 0.3);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,6 @@
+1. Update fonts to match growdin.com replace all fonts to match growdin (done)
+IN the initial load - capture email and send to bharti. Show an option to submit instead of "Get Score" (todo)
+Change the bg to the live app bg (Done)
+
+Founder section - click to open linkedin (Done)
+1. Testimonials - update that to linkeding (done)
