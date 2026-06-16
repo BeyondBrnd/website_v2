@@ -16,6 +16,7 @@ export type CaseStudySection = {
   subLabel?: string; // "KEY ISSUES:" — mono uppercase
   bullets?: string[]; // ✓ check list
   highlight?: string; // italic quote with colored left border
+  images?: string[]; // sample images to display below the section
 };
 
 export type CaseStudy = {
@@ -65,31 +66,31 @@ export const caseStudies: CaseStudy[] = [
         kind: "problem",
         label: "The Problem",
         intro:
-          "Despite 20+ years of HR leadership and running HumanAlpha, on LinkedIn Vijayashree looked like every other HR consultant. Prospects who checked her profile before a call saw \"an HR person\" — not the strategic advisor their company needed.",
+          "Vijayashree had years of HR leadership experience, but her LinkedIn profile wasn't helping her stand out.\nHer content looked similar to what many HR professionals were already posting. As a result, she wasn't attracting the right audience or generating enough inbound opportunities.",
         subLabel: "Key Issues:",
         bullets: [
-          "Generic HR content — hiring tips and culture quotes that attracted peers, not buyers",
-          "No CEO-level positioning despite two decades of boardroom experience",
-          "Engagement was polite likes, never conversations with decision-makers",
-          "Profile and headline read like a service provider, not an authority",
-          "Deals that should have closed on reputation were stalling on perception",
+          "No clear positioning in the market",
+          "Slow follower growth",
+          "Limited visibility among founders and business leaders",
+          "Few inbound leads through LinkedIn",
+          "Strong expertise, but low online recognition"
         ],
       },
       {
         kind: "strategy",
         label: "Our Strategy",
         intro:
-          "We repositioned her from HR generalist to CEO-level strategic voice — someone who speaks about business outcomes, not HR processes.",
-        subLabel: "What We Implemented:",
+          "We helped Vijayashree build a clear and differentiated personal brand.Instead of talking only about HR, we focused on how HR impacts business growth, leadership, and company success.",
+        subLabel: "Our approach included:",
         bullets: [
-          "Profile rebuild — headline, banner and about anchored on problems CEOs lose sleep over: leadership pipelines, succession risk, executive performance",
-          "Content engine — 4 posts a week in her voice, drawn from 20 years of real boardroom moments",
-          "Contrarian takes on leadership hiring that forced her ICP to stop scrolling",
-          "Anonymized client transformation stories so buyers could see themselves in the narrative",
-          "Daily strategic commenting on founder & CXO posts — putting her thinking in front of decision-makers instead of waiting for the algorithm",
+          "Creating a clear positioning strategy",
+          "Building content around strategic HR insights",
+          "Sharing practical experiences and leadership lessons",
+          "Optimising her profile to attract the right audience",
+          "Maintaining consistency with a strong content plan"
         ],
         highlight:
-          "The shift was simple but total: stop posting like an HR professional, start posting like the advisor CEOs call before their biggest people decisions.",
+          "",
       },
       {
         kind: "results",
@@ -98,19 +99,20 @@ export const caseStudies: CaseStudy[] = [
           "The same expertise she always had finally became visible to the people who pay for it.",
         subLabel: "The Numbers:",
         bullets: [
-          "27,000+ followers — a compounding audience of the right people",
-          "75L+ (7.5M+) impressions per year on her content",
-          "Inbound DMs from founders and CXOs — deals now start with \"I've been reading your posts\"",
-          "Featured in PR & media as a recognized voice on strategic HR",
-          "Used the same audience to attract and hire top talent for HumanAlpha",
+          "Grew from 19,000 to 25,000 followers", "+3,000% content reach and engagement",
+          "Consistent inbound leads through content",
+          "Higher visibility among decision-makers",
+          "Appreciation from clients and peers",
+          "More business opportunities through LinkedIn"
         ],
+        images: ["/case-studies/vijayashree-hero2.png"],
       },
       {
         kind: "insight",
         label: "Key Insight",
         intro: "Buyers don't follow job titles — they follow points of view.",
         highlight:
-          "Authority isn't built by saying you're an expert. It's built by consistently thinking in public where your buyers can watch.",
+          "People don't follow experience. They follow a clear point of view. When expertise is positioned around business impact, opportunities follow naturally.",
       },
     ],
   },
@@ -142,31 +144,31 @@ export const caseStudies: CaseStudy[] = [
         kind: "problem",
         label: "The Problem",
         intro:
-          "Yess.ai was weeks from launch and heading into a seed raise — and the co-founder's LinkedIn was effectively dead. Investors do diligence the same way buyers do: they read your LinkedIn before the first meeting.",
+          "Yess.ai was preparing for launch and looking to raise investment. However, the founder's LinkedIn profile had very little activity and visibility. Investors, founders, and potential users had no way of understanding the vision behind the product.",
         subLabel: "Key Issues:",
         bullets: [
-          "Months between posts — zero visible momentum going into a raise",
-          "Profile still read like his previous role, not the company he was building",
-          "No public narrative about what Yess was or why it mattered",
-          "A silent founder raises two investor doubts: can this person sell, and is anyone paying attention?",
-          "Launch date was fixed — momentum had to be visible from the outside, fast",
+          "Low profile visibility",
+          "No consistent content strategy",
+          "Limited audience trust before launch",
+          "Product story was not reaching the right people",
+          "Needed attention before approaching investors",
         ],
       },
       {
         kind: "strategy",
         label: "Our Strategy",
         intro:
-          "We built the entire pre-launch around one hero-product story: the painful, expensive problem Yess kills, told from the founder's seat.",
-        subLabel: "What We Implemented:",
+          "We focused on making the founder the face of the product.Instead of only talking about features, we built content around the problem Yess.ai was solving and the journey of building the company.",
+        subLabel: "Our Approach Included:",
         bullets: [
-          "A planned 30-day narrative arc — the problem we lived, why existing tools fail, behind-the-scenes of the fix, early user reactions",
-          "Solution-driven posts anchored on customer pain and outcomes — never feature lists",
-          "Product demos framed as \"the moment this problem dies\"",
-          "Deliberate engagement with VCs, operators and design partners in the comments",
-          "Every post sequenced to pull readers one step deeper toward launch day",
+          "Creating a strong founder story",
+          "Sharing the vision behind Yess.ai",
+          "Publishing solution-driven content",
+          "Building credibility through consistent posting",
+          "Positioning the founder in front of investors and startup audiences"
         ],
         highlight:
-          "By the time pitch meetings happened, the deck felt like a recap, not an introduction — investors had already watched the story unfold in their feed.",
+          "",
       },
       {
         kind: "results",
@@ -175,19 +177,22 @@ export const caseStudies: CaseStudy[] = [
           "A dead profile became the loudest channel for the yess.ai launch.",
         subLabel: "The Numbers:",
         bullets: [
-          "400,000+ views in the first 30 days of the campaign",
-          "Investor conversations opened inbound — several began with the content itself",
-          "Seed round raised, with public momentum doing the warm-up a cold deck used to do",
-          "A repeatable founder-led channel that kept compounding after launch",
+          "400,000+ views in 30 days",
+          "1.30K impressions in 7 days",
+          "Strong engagement from founders and startup professionals",
+          "Greater awareness for Yess.ai before launch",
+          "Inbound investor interest raised about $80,000",
+          "Successful support towards raising seed investment",
         ],
+        images: ["/case-studies/yess.png"],
       },
       {
         kind: "insight",
         label: "Key Insight",
         intro:
-          "Investors don't just fund products — they fund founders who can create attention.",
+          "Investors don't discover startups. They discover founders who consistently show up. ",
         highlight:
-          "If you can build an audience for the problem before launch, you can build one for the product after it. Proof of distribution is what makes a raise feel seamless.",
+          "A strong founder brand creates trust long before the product launch.",
       },
     ],
   },
@@ -207,13 +212,13 @@ export const caseStudies: CaseStudy[] = [
       "Generated 100+ demo calls for Insightology with LinkedIn organic growth + LinkedIn Ads combined",
     ],
     pageHeadline:
-      "Turned a 5,000-follower profile with only 50 right connections into 8,000 followers with 3,700+ elite market research agencies — bringing 100s of demos each month.",
+      "Turned his 5,000 follower profile with only 50 right connections to 8,000 followers with 3,700+ elite market research agencies.\nBrought 100s of demos each month.",
     role: "Co-founder & CEO at Insightology",
     tags: [
-      "Organic LinkedIn Growth",
-      "Product-Benefit Driven Posts",
+      "Organic LinkedIn Growth ",
+      "Product Benefits Driven Posts ",
       "Raised Investment",
-      "Hired Top Talent",
+      "Hired Top Talent"
     ],
     heroImage: "/case-studies/insightology2.png",
     heroImageDriveLink:
@@ -223,28 +228,28 @@ export const caseStudies: CaseStudy[] = [
         kind: "problem",
         label: "The Problem",
         intro:
-          "On paper, 5,000 followers sounds healthy. In reality, only about 50 of them were the people Insightology actually sells to — market research agencies.",
+          "Insightology had a strong product, but it wasn't getting enough visibility among the right people. The founder already had around 6,000 followers on LinkedIn, but most of them were not potential buyers. The company needed to reach market research agencies, generate more demos, and build credibility as it scaled.",
         subLabel: "Key Issues:",
         bullets: [
-          "Audience was a leftover from previous roles — ex-colleagues, recruiters, random connections",
-          "Product posts reached thousands of people who would never buy",
-          "The actual buyers — elite research agencies — had no idea the company existed",
-          "Demo pipeline depended entirely on outbound and referrals",
-          "The CEO's LinkedIn was a vanity metric, not a growth channel",
+          "Limited reach among target customers",
+          "Low inbound demo bookings",
+          "The right audience wasn't seeing the product",
+          "Needed stronger founder visibility and trust",
+          "Looking to accelerate growth and fundraising",
         ],
       },
       {
         kind: "strategy",
         label: "Our Strategy",
         intro:
-          "We rebuilt the audience before scaling the content — then layered paid on top of proven organic.",
-        subLabel: "What We Implemented:",
+          "We focused on building the founder's personal brand while creating demand for Insightology. Instead of posting generic content, we created content around industry challenges, market research trends, and the real problems the product solves. Alongside organic LinkedIn growth, we ran LinkedIn Ads to reach decision-makers and drive qualified demo bookings.",
+        subLabel: "Our approach included:",
         bullets: [
-          "Surgical network rebuild — personalized connection campaigns targeting decision-makers at market research agencies, ICP or nothing",
-          "Product-benefit content — what agencies gain: faster insight turnaround, happier end-clients, margin saved",
-          "Real product use cases instead of feature announcements",
-          "Top organic posts converted into precisely-targeted LinkedIn Ads aimed at the same agency ICP",
-          "Ad budget amplified only content already proven to convert attention into demo requests",
+          "Building authority in the market research space",
+          "Creating product benefit-driven content",
+          "Growing a network of relevant industry professionals",
+          "Running LinkedIn Ads to generate demo calls",
+          "Increasing visibility among customers, partners, and investors",
         ],
         highlight:
           "When organic proves what converts, ads stop being a gamble — you're just paying to show a winning message to more of the same audience.",
@@ -256,18 +261,21 @@ export const caseStudies: CaseStudy[] = [
           "Every post now lands in front of buyers — and the pipeline shows it.",
         subLabel: "The Numbers:",
         bullets: [
-          "5,000 → 8,000 followers — with 3,700+ of them elite market research agencies (the actual ICP)",
-          "60,000 impressions in a single month",
-          "100+ demo calls generated through organic + LinkedIn Ads combined — now repeating monthly",
-          "Founder visibility supported raising investment and hiring top talent",
+          "Grew from 6,000 to 8,000 followers",
+          "Built a network of 3,700+ market research professionals",
+          "Generated 60,000+ impressions in a month",
+          "Delivered 100+ demo calls through LinkedIn organic growth and LinkedIn Ads",
+          "Increased visibility among key decision-makers",
+          "Supported the company's successful seed investment journey",
         ],
+        images: ["/case-studies/insightology.png"],
       },
       {
         kind: "insight",
         label: "Key Insight",
         intro: "Follower count is vanity; follower composition is pipeline.",
         highlight:
-          "Adding 3,000 of the right followers did more than 50,000 random ones ever could — because the feed is only a sales channel when your buyers are in it.",
+          "Growth comes from reaching the right people, not the most people. When founder visibility and demand generation work together, awareness turns into revenue.",
       },
     ],
   },

@@ -87,11 +87,6 @@ export default async function CaseStudyPage({
           {cs.sections.map((s) => (
             <CaseStudySection key={s.label} section={s} />
           ))}
-
-          {/* Social-proof screenshots from Bharti slot in here when ready */}
-          <p className="text-center text-xs italic text-black/40">
-            Social proof screenshots coming soon.
-          </p>
         </div>
       </main>
 
