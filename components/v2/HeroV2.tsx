@@ -18,16 +18,20 @@ export default function HeroV2() {
   return (
     <section className="relative overflow-hidden">
       <BackgroundMeteors>
-        <div className="mx-auto grid min-h-[78vh] max-w-7xl items-center gap-12 px-5 py-16 md:grid-cols-2 md:py-24">
+        <div className="mx-auto grid min-h-[78vh] max-w-7xl items-center gap-6 px-5 py-16 md:grid-cols-2 md:py-24">
           {/* Left: headline + CTA */}
           <div>
             <h1 className="text-4xl font-extrabold leading-[1.07] tracking-tight text-black sm:text-5xl lg:text-[3.4rem]">
-              Busy business owners sign more deals when their LinkedIn is{' '}
+              Busy business owner&apos;s sign<br />
+              more deals when they are<br />
+              LinkedIn is{' '}
               <em className="font-extrabold italic text-[#00bf63]">Impressive</em>
               .
-              <br />
-              <span className="text-black">We make that happen.</span>
             </h1>
+
+            <p className="mt-8 text-4xl font-extrabold leading-[1.07] tracking-tight text-black sm:text-5xl lg:text-[3.4rem]">
+              We make that happen.
+            </p>
 
             <p className="mt-5 max-w-md text-lg leading-7 text-black/65">
               We handle your LinkedIn so you can handle your business.

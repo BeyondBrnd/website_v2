@@ -170,7 +170,7 @@ export default function ScoreWidget() {
             disabled={!ready}
             className="w-full rounded-xl bg-black px-5 py-3 text-sm font-bold text-white transition hover:bg-black/85 disabled:opacity-30"
           >
-            Get my score
+            Submit
           </button>
         </div>
       ) : (

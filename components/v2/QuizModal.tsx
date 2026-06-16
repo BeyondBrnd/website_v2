@@ -1,13 +1,7 @@
 'use client';
 
-// components/v2/QuizModal.tsx
-// Opens automatically on first visit (per session). Three steps:
-// 1. Drop your LinkedIn profile  2. Industry  3. Goal on LinkedIn
-// On completion it scrolls to the booking section and (optionally)
-// hands the LinkedIn URL to the score widget via a custom event.
-
 import React, { useEffect, useState } from 'react';
-import { X, ArrowRight, Linkedin } from 'lucide-react';
+import { X, ArrowRight, Linkedin, Mail } from 'lucide-react';
 
 const INDUSTRIES = [
   'SaaS / Tech',
@@ -31,6 +25,8 @@ export default function QuizModal() {
   const [linkedinUrl, setLinkedinUrl] = useState('');
   const [industry, setIndustry] = useState('');
   const [goal, setGoal] = useState('');
+  const [email, setEmail] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     // Show once per session, after a short beat so the hero paints first.
@@ -45,12 +41,23 @@ export default function QuizModal() {
     sessionStorage.setItem('bb-quiz-done', '1');
   };
 
-  const finish = () => {
+  const finish = async () => {
+    setSubmitting(true);
+    try {
+      await fetch('/api/submit-quiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ linkedinUrl, industry, goal, email }),
+      });
+    } catch {
+      // silently fail — the user's experience shouldn't break if email fails
+    }
+    setSubmitting(false);
+
     sessionStorage.setItem(
       'bb-quiz-answers',
-      JSON.stringify({ linkedinUrl, industry, goal })
+      JSON.stringify({ linkedinUrl, industry, goal, email })
     );
-    // Let the score widget pre-fill the profile URL
     window.dispatchEvent(
       new CustomEvent('bb-quiz-complete', { detail: { linkedinUrl } })
     );
@@ -80,7 +87,7 @@ export default function QuizModal() {
 
         {/* Progress */}
         <div className="mb-6 flex gap-1.5">
-          {[0, 1, 2].map((i) => (
+          {[0, 1, 2, 3].map((i) => (
             <span
               key={i}
               className={`h-1 flex-1 rounded-full transition-colors ${
@@ -95,7 +102,7 @@ export default function QuizModal() {
             <div className="mb-1 flex items-center gap-2 text-[#00bf63]">
               <Linkedin className="h-5 w-5" />
               <span className="text-xs font-bold uppercase tracking-wider">
-                Step 1 of 3
+                Step 1 of 4
               </span>
             </div>
             <h3 className="text-xl font-bold tracking-tight">
@@ -130,7 +137,7 @@ export default function QuizModal() {
 
         {step === 1 && (
           <StepChoice
-            stepLabel="Step 2 of 3"
+            stepLabel="Step 2 of 4"
             title="What industry are you in?"
             options={INDUSTRIES}
             selected={industry}
@@ -143,7 +150,7 @@ export default function QuizModal() {
 
         {step === 2 && (
           <StepChoice
-            stepLabel="Step 3 of 3"
+            stepLabel="Step 3 of 4"
             title="What's your goal on LinkedIn?"
             options={GOALS}
             selected={goal}
@@ -152,14 +159,46 @@ export default function QuizModal() {
             }}
             footer={
               <button
-                onClick={finish}
+                onClick={() => setStep(3)}
                 disabled={!goal}
                 className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#00bf63] px-5 py-3 text-sm font-bold text-black transition hover:bg-[#00a857] disabled:opacity-40"
               >
-                Check my LinkedIn score <ArrowRight className="h-4 w-4" />
+                Next <ArrowRight className="h-4 w-4" />
               </button>
             }
           />
+        )}
+
+        {step === 3 && (
+          <div>
+            <div className="mb-1 flex items-center gap-2 text-[#00bf63]">
+              <Mail className="h-5 w-5" />
+              <span className="text-xs font-bold uppercase tracking-wider">
+                Step 4 of 4
+              </span>
+            </div>
+            <h3 className="text-xl font-bold tracking-tight">
+              Where should we send your score?
+            </h3>
+            <p className="mt-1 text-sm text-black/55">
+              Drop your email and we&apos;ll share your full LinkedIn audit.
+            </p>
+            <input
+              type="email"
+              inputMode="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              className="mt-4 w-full rounded-xl border border-black/15 px-4 py-3 text-sm outline-none transition focus:border-[#00bf63] focus:ring-2 focus:ring-[#00bf63]/20"
+            />
+            <button
+              onClick={finish}
+              disabled={!email || submitting}
+              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#00bf63] px-5 py-3 text-sm font-bold text-black transition hover:bg-[#00a857] disabled:opacity-40"
+            >
+              {submitting ? 'Submitting...' : 'Submit'}
+            </button>
+          </div>
         )}
       </div>
     </div>
