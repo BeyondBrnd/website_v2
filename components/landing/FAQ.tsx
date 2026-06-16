@@ -5,24 +5,34 @@ import { Plus, Minus, MessageCircle } from "lucide-react";
 
 const faqs = [
   {
-    question: "How fast can I expect leads?",
+    question: "Who is Beyondbrnd for?",
     answer:
-      "Most clients start seeing conversations in the first few weeks, depending on offer, niche, and targeting.",
+      "We work with founders, consultants, CXOs, and business owners who want to attract more opportunities through LinkedIn",
   },
   {
-    question: "Do you guarantee results?",
+    question: "Do I need a large LinkedIn following to work with you?",
     answer:
-      "We guarantee the process, not the outcomes. Our process: consistent targeting, messaging, and execution. Results depend on offer-market fit, pricing, and response handling.",
+      "No. We've helped clients with small audiences build authority, generate leads, and grow their visibility.",
   },
   {
-    question: "Do you only work with B2B?",
+    question: "Do you only manage LinkedIn content?",
     answer:
-      "Yes. We work specifically with B2B founders and experts where LinkedIn + targeted outreach is the fastest path to qualified conversations.",
+      "No. We handle positioning, profile optimisation, content strategy, content creation, and growth support end-to-end.",
   },
   {
-    question: "What do you need from me to start?",
+    question: "How long does it take to see results?",
     answer:
-      "Please share details about your offer, examples of your target customers, a link to your LinkedIn profile, any existing proof of results such as case studies or testimonials, and a company brief in PDF format.",
+      "Most clients start seeing increased visibility and engagement within the first 30-60 days. Business outcomes typically follow with consistency.",
+  },
+  {
+    question: "Can LinkedIn really help me get clients or business opportunities?",
+    answer:
+      "Yes. When your profile, content, and positioning are aligned, LinkedIn becomes a powerful channel for attracting leads, partnerships, talent, and investors.",
+  },
+  {
+    question: "How much time will I need to dedicate every week?",
+    answer:
+      "Just 1 hour per week. We'll handle the strategy, content, and execution. Your role is simply to share insights, experiences, and feedback during a short weekly call.",
   },
 ];
 
@@ -75,11 +85,10 @@ export default function FAQ() {
               return (
                 <div
                   key={index}
-                  className={`overflow-hidden rounded-xl border bg-white transition-all duration-300 ${
-                    isOpen
+                  className={`overflow-hidden rounded-xl border bg-white transition-all duration-300 ${isOpen
                       ? "border-[#00bf63] bg-[#FAFAFA]"
                       : "border-[#E8E8E8] hover:border-[#CCCCCC]"
-                  }`}
+                    }`}
                 >
                   <button
                     type="button"
@@ -96,11 +105,10 @@ export default function FAQ() {
                     </div>
 
                     <div
-                      className={`flex h-7 w-7 items-center justify-center rounded-full transition-all duration-300 ${
-                        isOpen
+                      className={`flex h-7 w-7 items-center justify-center rounded-full transition-all duration-300 ${isOpen
                           ? "bg-[#00bf63] text-white"
                           : "bg-[#F5F5F5] text-[#00bf63]"
-                      }`}
+                        }`}
                       aria-hidden="true"
                     >
                       {isOpen ? (
@@ -112,9 +120,8 @@ export default function FAQ() {
                   </button>
 
                   <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      isOpen ? "max-h-[260px]" : "max-h-0"
-                    }`}
+                    className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[260px]" : "max-h-0"
+                      }`}
                   >
                     <div className="px-5 pb-5 pt-0">
                       <p className="pl-6 text-sm leading-relaxed text-black/60">
