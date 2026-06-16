@@ -5,7 +5,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, BadgeCheck } from 'lucide-react';
 import { caseStudies, getCaseStudy } from '@/lib/caseStudies';
 import CaseStudySection from '@/components/v2/CaseStudySection';
 import Header from '@/components/landing/Header';
@@ -84,8 +84,35 @@ export default async function CaseStudyPage({
 
         {/* Section cards */}
         <div className="mx-auto mt-14 max-w-4xl space-y-8">
-          {cs.sections.map((s) => (
-            <CaseStudySection key={s.label} section={s} />
+          {cs.sections.map((s, i) => (
+            <React.Fragment key={s.label}>
+              <CaseStudySection section={s} />
+              {s.kind === "results" && cs.socialProofImages.length > 0 && (
+                <section className="glass-card rounded-3xl p-7 sm:p-9">
+                  <div className="flex items-center gap-4">
+                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#00bf63]/12 text-[#00a857]">
+                      <BadgeCheck className="h-5 w-5" />
+                    </span>
+                    <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+                      Social Proof
+                    </h2>
+                  </div>
+                  <div className="mt-7 grid gap-5 sm:grid-cols-2">
+                    {cs.socialProofImages.map((src, j) => (
+                      <div key={j} className="relative">
+                        <div className="absolute -inset-2 rounded-[18px] bg-[#00bf63]/8" />
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={src}
+                          alt={`Social proof ${j + 1}`}
+                          className="relative w-full rounded-xl bg-[#eaf7ef] object-cover shadow-[0_8px_24px_rgba(0,0,0,0.1)]"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+            </React.Fragment>
           ))}
         </div>
       </main>

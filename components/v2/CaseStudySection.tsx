@@ -109,23 +109,6 @@ export default function CaseStudySection({
           {section.highlight}
         </blockquote>
       )}
-
-      {/* Sample images */}
-      {section.images && section.images.length > 0 && (
-        <div className="mt-7 grid gap-5 sm:grid-cols-2">
-          {section.images.map((src, i) => (
-            <div key={i} className="relative">
-              <div className="absolute -inset-2 rounded-[18px] bg-[#00bf63]/8" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={src}
-                alt={`${section.label} — screenshot ${i + 1}`}
-                className="relative w-full rounded-xl bg-[#eaf7ef] object-cover shadow-[0_8px_24px_rgba(0,0,0,0.1)]"
-              />
-            </div>
-          ))}
-        </div>
-      )}
     </section>
   );
 }

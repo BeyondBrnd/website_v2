@@ -16,7 +16,6 @@ export type CaseStudySection = {
   subLabel?: string; // "KEY ISSUES:" — mono uppercase
   bullets?: string[]; // ✓ check list
   highlight?: string; // italic quote with colored left border
-  images?: string[]; // sample images to display below the section
 };
 
 export type CaseStudy = {
@@ -32,6 +31,7 @@ export type CaseStudy = {
   heroImage: string;
   heroImageDriveLink: string;
   sections: CaseStudySection[];
+  socialProofImages: string[];
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -105,7 +105,6 @@ export const caseStudies: CaseStudy[] = [
           "Appreciation from clients and peers",
           "More business opportunities through LinkedIn"
         ],
-        images: ["/case-studies/vijayashree-hero2.png"],
       },
       {
         kind: "insight",
@@ -114,6 +113,13 @@ export const caseStudies: CaseStudy[] = [
         highlight:
           "People don't follow experience. They follow a clear point of view. When expertise is positioned around business impact, opportunities follow naturally.",
       },
+    ],
+    socialProofImages: [
+      "/social-proof/client 1/client 1-1.jpeg",
+      "/social-proof/client 1/client 1-2.jpeg",
+      "/social-proof/client 1/client 1-3.jpeg",
+      "/social-proof/client 1/client 1-4.png",
+      "/social-proof/client 1/client 1-5.jpeg",
     ],
   },
 
@@ -184,7 +190,6 @@ export const caseStudies: CaseStudy[] = [
           "Inbound investor interest raised about $80,000",
           "Successful support towards raising seed investment",
         ],
-        images: ["/case-studies/yess.png"],
       },
       {
         kind: "insight",
@@ -194,6 +199,11 @@ export const caseStudies: CaseStudy[] = [
         highlight:
           "A strong founder brand creates trust long before the product launch.",
       },
+    ],
+    socialProofImages: [
+      "/social-proof/client 2/client 2-1.jpeg",
+      "/social-proof/client 2/client 2-2.jpeg",
+      "/social-proof/client 2/client 2-3.jpeg",
     ],
   },
 
@@ -268,7 +278,6 @@ export const caseStudies: CaseStudy[] = [
           "Increased visibility among key decision-makers",
           "Supported the company's successful seed investment journey",
         ],
-        images: ["/case-studies/insightology.png"],
       },
       {
         kind: "insight",
@@ -277,6 +286,12 @@ export const caseStudies: CaseStudy[] = [
         highlight:
           "Growth comes from reaching the right people, not the most people. When founder visibility and demand generation work together, awareness turns into revenue.",
       },
+    ],
+    socialProofImages: [
+      "/social-proof/client 3/client3.jpeg",
+      "/social-proof/client 3/client3-2.jpeg",
+      "/social-proof/client 3/client3-3.jpeg",
+      "/social-proof/client 3/client3-4.jpeg",
     ],
   },
 ];
