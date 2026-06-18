@@ -11,7 +11,7 @@ export default function HeroV2() {
         <div className="mx-auto grid min-h-[78vh] max-w-7xl items-center gap-6 px-5 py-16 md:grid-cols-2 md:py-24">
           {/* Left: headline + CTA */}
           <div>
-            <h1 className="text-4xl font-extrabold leading-[1.07] tracking-tight text-black sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="text-[31px] font-extrabold leading-[1.07] tracking-tight text-black sm:text-[43px] lg:text-[49.4px]">
               <span className="whitespace-nowrap">Busy business owner&apos;s sign</span><br />
               more deals when their<br />
               LinkedIn is{' '}
@@ -19,7 +19,7 @@ export default function HeroV2() {
             </h1>
 
             {/* Line 4 with a clean top margin spacer */}
-            <p className="mt-6 text-4xl font-extrabold leading-[1.07] tracking-tight text-black sm:text-5xl lg:text-[3.4rem]">
+            <p className="mt-6 text-[31px] font-extrabold leading-[1.07] tracking-tight text-black sm:text-[43px] lg:text-[49.4px]">
               We make that happen.
             </p>
 

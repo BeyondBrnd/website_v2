@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -13,11 +13,30 @@ const images = [
   { src: '/testimonials/sandeep.png', name: 'Sandeep' },
 ]
 
-const VISIBLE = 3
-
 export default function Testimonials() {
+  const [visible, setVisible] = useState(3)
   const [index, setIndex] = useState(0)
-  const maxIndex = Math.max(0, images.length - VISIBLE)
+
+  useEffect(() => {
+    const updateVisible = () => {
+      if (window.innerWidth < 640) {
+        setVisible(1)
+      } else if (window.innerWidth < 1024) {
+        setVisible(2)
+      } else {
+        setVisible(3)
+      }
+    }
+    updateVisible()
+    window.addEventListener('resize', updateVisible)
+    return () => window.removeEventListener('resize', updateVisible)
+  }, [])
+
+  const maxIndex = Math.max(0, images.length - visible)
+
+  useEffect(() => {
+    setIndex((prev) => Math.min(prev, Math.max(0, images.length - visible)))
+  }, [visible])
 
   const prev = () => setIndex((i) => Math.max(0, i - 1))
   const next = () => setIndex((i) => Math.min(maxIndex, i + 1))
@@ -39,15 +58,15 @@ export default function Testimonials() {
           <div className="overflow-hidden rounded-2xl">
             <div
               className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${index * (100 / VISIBLE)}%)` }}
+              style={{ transform: `translateX(-${index * (100 / visible)}%)` }}
             >
               {images.map((img) => (
                 <div
                   key={img.name}
-                  className="min-w-0 shrink-0 px-3"
-                  style={{ flex: `0 0 ${100 / VISIBLE}%` }}
+                  className="min-w-0 shrink-0"
+                  style={{ flex: `0 0 ${100 / visible}%` }}
                 >
-                  <div className="overflow-hidden rounded-2xl shadow-sm">
+                  <div className="mx-3 overflow-hidden rounded-2xl shadow-sm">
                     <Image
                       src={img.src}
                       alt={`${img.name} testimonial`}
@@ -64,19 +83,19 @@ export default function Testimonials() {
           {index > 0 && (
             <button
               onClick={prev}
-              className="absolute -left-4 top-1/2 -translate-y-1/2 rounded-full bg-white p-2 shadow-md transition hover:shadow-lg"
+              className="absolute left-0 top-1/2 -translate-y-1/2 rounded-full bg-white p-2 shadow-md transition hover:shadow-lg sm:-left-4"
               aria-label="Previous"
             >
-              <ChevronLeft className="h-5 w-5 text-black/60" />
+              <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 text-black/60" />
             </button>
           )}
           {index < maxIndex && (
             <button
               onClick={next}
-              className="absolute -right-4 top-1/2 -translate-y-1/2 rounded-full bg-white p-2 shadow-md transition hover:shadow-lg"
+              className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full bg-white p-2 shadow-md transition hover:shadow-lg sm:-right-4"
               aria-label="Next"
             >
-              <ChevronRight className="h-5 w-5 text-black/60" />
+              <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-black/60" />
             </button>
           )}
 

@@ -39,10 +39,6 @@ const BRANDS: Brand[] = [
 ];
 
 export default function TrustedBy() {
-  // Split into 2 rows (5 + 5)
-  const mid = Math.ceil(BRANDS.length / 2);
-  const rows = [BRANDS.slice(0, mid), BRANDS.slice(mid)];
-
   return (
     <section className="glass-section relative py-14">
       <div className="mx-auto max-w-6xl px-4">
@@ -50,15 +46,10 @@ export default function TrustedBy() {
           Trusted by Leaders &amp; Teams at
         </h2>
 
-        <div className="mt-10 space-y-10">
-          {rows.map((rowBrands, r) => (
-            <div
-              key={r}
-              className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-16"
-            >
-              {rowBrands.map((b) => (
-                <LogoSlot key={b.name} brand={b} />
-              ))}
+        <div className="mt-10 grid grid-cols-2 items-center justify-center gap-x-8 gap-y-8 sm:grid-cols-3 md:grid-cols-5 md:gap-x-12">
+          {BRANDS.map((b) => (
+            <div key={b.name} className="flex justify-center">
+              <LogoSlot brand={b} />
             </div>
           ))}
         </div>

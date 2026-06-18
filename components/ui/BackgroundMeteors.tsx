@@ -114,7 +114,7 @@ export default function BackgroundMeteors({
   return (
     <div
       ref={containerRef}
-      className="relative flex h-[80vh] w-full items-center justify-center overflow-hidden bg-white"
+      className="relative flex min-h-[80vh] h-auto w-full items-center justify-center overflow-hidden bg-white"
     >
       {/* Light green grid */}
       <div

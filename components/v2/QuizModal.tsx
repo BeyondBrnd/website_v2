@@ -76,7 +76,7 @@ export default function QuizModal() {
       aria-modal="true"
       aria-label="Quick questions before we start"
     >
-      <div className="relative w-full max-w-md rounded-3xl bg-white p-7 shadow-2xl">
+      <div className="relative w-full max-w-md max-h-[90vh] overflow-y-auto rounded-3xl bg-white p-5 sm:p-7 shadow-2xl">
         <button
           onClick={close}
           aria-label="Skip and close"
@@ -226,7 +226,7 @@ function StepChoice({
         {stepLabel}
       </span>
       <h3 className="mt-1 text-xl font-bold tracking-tight">{title}</h3>
-      <div className="mt-4 grid grid-cols-2 gap-2">
+      <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
         {options.map((o) => (
           <button
             key={o}

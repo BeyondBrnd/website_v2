@@ -59,7 +59,7 @@ export default function CaseStudySection({
   const { Icon } = s;
 
   return (
-    <section className="glass-card rounded-3xl p-7 sm:p-9">
+    <section className="glass-card rounded-3xl p-5 sm:p-9">
       {/* Icon badge + heading */}
       <div className="flex items-center gap-4">
         <span

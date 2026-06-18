@@ -94,7 +94,7 @@ export default function ScoreWidget() {
   return (
     <div
       id="linkedin-score"
-      className="w-full max-w-md rounded-3xl border border-black/8 bg-white/90 p-6 shadow-[0_24px_60px_rgba(0,0,0,0.10)] backdrop-blur"
+      className="w-full max-w-md rounded-3xl border border-black/8 bg-white/90 p-5 sm:p-6 shadow-[0_24px_60px_rgba(0,0,0,0.10)] backdrop-blur"
     >
       <div className="flex items-center gap-2">
         <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-[#0a66c2]/10">
@@ -234,7 +234,7 @@ function YesNo({
   return (
     <div className="flex items-center justify-between gap-3">
       <span className="text-xs font-semibold text-black/70">{label}</span>
-      <div className="flex gap-1.5">
+      <div className="flex shrink-0 gap-1.5">
         {[true, false].map((v) => (
           <button
             key={String(v)}

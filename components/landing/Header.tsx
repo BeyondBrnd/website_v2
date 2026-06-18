@@ -15,11 +15,11 @@ export default function Header() {
             className="h-10 w-auto"
             loading="eager"
           />
-          <span className="text-lg font-extrabold tracking-tight">
+          <span className="hidden sm:inline text-lg font-extrabold tracking-tight">
             beyond<span className="text-[#00bf63]">brnd</span>
           </span>
         </Link>
-        <CTAButton />
+        <CTAButton className="h-[36px] px-4 text-[13px] sm:h-[44px] sm:px-6 sm:text-[14px]" />
       </div>
     </header>
   );
