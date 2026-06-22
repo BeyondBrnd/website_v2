@@ -12,7 +12,7 @@ export default function HeroV2() {
           {/* Left: headline + CTA */}
           <div>
             <h1 className="text-[31px] font-extrabold leading-[1.07] tracking-tight text-black sm:text-[43px] lg:text-[49.4px]">
-              <span className="whitespace-nowrap">Busy business owner&apos;s sign</span><br />
+              <span className="whitespace-nowrap">Busy business owners sign</span><br />
               more deals when their<br />
               LinkedIn is{' '}
               <em className="font-extrabold italic text-[#00bf63]">Impressive</em>.

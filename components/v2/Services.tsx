@@ -47,18 +47,19 @@ export default function Services() {
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {SERVICES.map(({ icon: Icon, title, desc }) => (
-            <div
+            <a
               key={title}
-              className="group rounded-2xl border border-black/6 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(0,0,0,0.10)]"
+              href="#book-call"
+              className="group block rounded-2xl border border-black/6 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-[0_18px_44px_rgba(0,0,0,0.10)]"
             >
               <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#00bf63]/12 text-[#00a857] transition group-hover:bg-[#00bf63] group-hover:text-black">
                 <Icon className="h-5 w-5" />
               </span>
-              <h3 className="mt-4 text-lg font-bold tracking-tight">
+              <h3 className="mt-4 text-xl font-semibold tracking-tight">
                 {title}
               </h3>
-              <p className="mt-1.5 text-sm leading-6 text-black/60">{desc}</p>
-            </div>
+              <p className="mt-1.5 text-base leading-6 text-black/60">{desc}</p>
+            </a>
           ))}
         </div>
       </div>

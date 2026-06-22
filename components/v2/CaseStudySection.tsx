@@ -86,15 +86,23 @@ export default function CaseStudySection({
         </div>
       )}
 
-      {/* ✓ Check bullets */}
+      {/* Section-icon bullets (checkmark for strategy) */}
       {section.bullets && section.bullets.length > 0 && (
         <ul className="mt-4 space-y-3.5">
           {section.bullets.map((b, i) => (
             <li key={i} className="flex items-start gap-3">
-              <CheckCircle2
-                className={`mt-0.5 h-5 w-5 shrink-0 ${s.check}`}
-                strokeWidth={2}
-              />
+              {section.kind === 'strategy' ? (
+                <CheckCircle2
+                  className={`mt-0.5 h-5 w-5 shrink-0 ${s.check}`}
+                  strokeWidth={2}
+                />
+              ) : (
+                <span
+                  className={`mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${s.badge}`}
+                >
+                  <Icon className="h-3 w-3" />
+                </span>
+              )}
               <span className="text-[15px] leading-6 text-black/75">{b}</span>
             </li>
           ))}

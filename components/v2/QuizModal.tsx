@@ -1,7 +1,18 @@
 'use client';
 
+// components/v2/QuizModal.tsx — V2.1 (Bharti feedback)
+// Changes:
+//  • Removed the "Step X of 4" labels + the LinkedIn/Mail icons (the 4 progress
+//    bars at the top are enough).
+//  • Reordered to: 1) industry  2) goal  3) email  4) LinkedIn profile.
+//  • Email step heading is now "Share your best email".
+//  • Every field is mandatory — you can't advance/submit without valid input,
+//    and the "Skip for now" escape hatch is gone (the ✕ still closes the modal).
+//  • LinkedIn URL is STRICTLY validated as a linkedin.com/in profile link, so
+//    website links / random text no longer slip through as wasted leads.
+
 import React, { useEffect, useState } from 'react';
-import { X, ArrowRight, Linkedin, Mail } from 'lucide-react';
+import { X, ArrowRight } from 'lucide-react';
 
 const INDUSTRIES = [
   'SaaS / Tech',
@@ -19,13 +30,25 @@ const GOALS = [
   'Hire top talent',
 ];
 
+// Strictly validate a LinkedIn *profile* URL — rejects websites and junk text.
+function isValidLinkedInUrl(value: string) {
+  return /^(https?:\/\/)?(www\.)?linkedin\.com\/(in|pub)\/[A-Za-z0-9\-_%]+\/?.*$/i.test(
+    value.trim()
+  );
+}
+
+function isValidEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+}
+
 export default function QuizModal() {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
-  const [linkedinUrl, setLinkedinUrl] = useState('');
   const [industry, setIndustry] = useState('');
   const [goal, setGoal] = useState('');
   const [email, setEmail] = useState('');
+  const [linkedinUrl, setLinkedinUrl] = useState('');
+  const [linkedinError, setLinkedinError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -42,6 +65,13 @@ export default function QuizModal() {
   };
 
   const finish = async () => {
+    if (!isValidLinkedInUrl(linkedinUrl)) {
+      setLinkedinError(
+        'Please enter a valid LinkedIn profile link (e.g. linkedin.com/in/your-profile).'
+      );
+      return;
+    }
+    setLinkedinError('');
     setSubmitting(true);
     try {
       await fetch('/api/submit-quiz', {
@@ -79,32 +109,79 @@ export default function QuizModal() {
       <div className="relative w-full max-w-md max-h-[90vh] overflow-y-auto rounded-3xl bg-white p-5 sm:p-7 shadow-2xl">
         <button
           onClick={close}
-          aria-label="Skip and close"
+          aria-label="Close"
           className="absolute right-4 top-4 rounded-full p-1.5 text-black/40 transition hover:bg-black/5 hover:text-black"
         >
           <X className="h-5 w-5" />
         </button>
 
-        {/* Progress */}
+        {/* Progress — the 4 horizontal bars (kept; step labels removed) */}
         <div className="mb-6 flex gap-1.5">
           {[0, 1, 2, 3].map((i) => (
             <span
               key={i}
-              className={`h-1 flex-1 rounded-full transition-colors ${
-                i <= step ? 'bg-[#00bf63]' : 'bg-black/10'
-              }`}
+              className={`h-1 flex-1 rounded-full transition-colors ${i <= step ? 'bg-[#00bf63]' : 'bg-black/10'
+                }`}
             />
           ))}
         </div>
 
+        {/* Step 1 — Industry */}
         {step === 0 && (
+          <StepChoice
+            title="What industry are you in?"
+            options={INDUSTRIES}
+            selected={industry}
+            onSelect={(v) => {
+              setIndustry(v);
+              setStep(1);
+            }}
+          />
+        )}
+
+        {/* Step 2 — Goal */}
+        {step === 1 && (
+          <StepChoice
+            title="What's your goal on LinkedIn?"
+            options={GOALS}
+            selected={goal}
+            onSelect={(v) => {
+              setGoal(v);
+              setStep(2);
+            }}
+          />
+        )}
+
+        {/* Step 3 — Email */}
+        {step === 2 && (
           <div>
-            <div className="mb-1 flex items-center gap-2 text-[#00bf63]">
-              <Linkedin className="h-5 w-5" />
-              <span className="text-xs font-bold uppercase tracking-wider">
-                Step 1 of 4
-              </span>
-            </div>
+            <h3 className="text-xl font-bold tracking-tight">
+              Share your best email
+            </h3>
+            <p className="mt-1 text-sm text-black/55">
+              We&apos;ll share your full LinkedIn audit and score here.
+            </p>
+            <input
+              type="email"
+              inputMode="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              className="mt-4 w-full rounded-xl border border-black/15 px-4 py-3 text-sm outline-none transition focus:border-[#00bf63] focus:ring-2 focus:ring-[#00bf63]/20"
+            />
+            <button
+              onClick={() => setStep(3)}
+              disabled={!isValidEmail(email)}
+              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#00bf63] px-5 py-3 text-sm font-bold text-black transition hover:bg-[#00a857] disabled:opacity-40"
+            >
+              Next <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
+        )}
+
+        {/* Step 4 — LinkedIn profile (strictly validated) */}
+        {step === 3 && (
+          <div>
             <h3 className="text-xl font-bold tracking-tight">
               Drop your LinkedIn profile
             </h3>
@@ -116,84 +193,24 @@ export default function QuizModal() {
               type="url"
               inputMode="url"
               value={linkedinUrl}
-              onChange={(e) => setLinkedinUrl(e.target.value)}
+              onChange={(e) => {
+                setLinkedinUrl(e.target.value);
+                if (linkedinError) setLinkedinError('');
+              }}
               placeholder="linkedin.com/in/your-profile"
-              className="mt-4 w-full rounded-xl border border-black/15 px-4 py-3 text-sm outline-none transition focus:border-[#00bf63] focus:ring-2 focus:ring-[#00bf63]/20"
+              className={`mt-4 w-full rounded-xl border px-4 py-3 text-sm outline-none transition focus:ring-2 ${linkedinError
+                  ? 'border-red-400 focus:border-red-400 focus:ring-red-200'
+                  : 'border-black/15 focus:border-[#00bf63] focus:ring-[#00bf63]/20'
+                }`}
             />
-            <button
-              onClick={() => setStep(1)}
-              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#00bf63] px-5 py-3 text-sm font-bold text-black transition hover:bg-[#00a857]"
-            >
-              Next <ArrowRight className="h-4 w-4" />
-            </button>
-            <button
-              onClick={close}
-              className="mt-2 w-full text-center text-xs text-black/40 hover:text-black/60"
-            >
-              Skip for now
-            </button>
-          </div>
-        )}
-
-        {step === 1 && (
-          <StepChoice
-            stepLabel="Step 2 of 4"
-            title="What industry are you in?"
-            options={INDUSTRIES}
-            selected={industry}
-            onSelect={(v) => {
-              setIndustry(v);
-              setStep(2);
-            }}
-          />
-        )}
-
-        {step === 2 && (
-          <StepChoice
-            stepLabel="Step 3 of 4"
-            title="What's your goal on LinkedIn?"
-            options={GOALS}
-            selected={goal}
-            onSelect={(v) => {
-              setGoal(v);
-            }}
-            footer={
-              <button
-                onClick={() => setStep(3)}
-                disabled={!goal}
-                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#00bf63] px-5 py-3 text-sm font-bold text-black transition hover:bg-[#00a857] disabled:opacity-40"
-              >
-                Next <ArrowRight className="h-4 w-4" />
-              </button>
-            }
-          />
-        )}
-
-        {step === 3 && (
-          <div>
-            <div className="mb-1 flex items-center gap-2 text-[#00bf63]">
-              <Mail className="h-5 w-5" />
-              <span className="text-xs font-bold uppercase tracking-wider">
-                Step 4 of 4
-              </span>
-            </div>
-            <h3 className="text-xl font-bold tracking-tight">
-              Where should we send your score?
-            </h3>
-            <p className="mt-1 text-sm text-black/55">
-              Drop your email and we&apos;ll share your full LinkedIn audit.
-            </p>
-            <input
-              type="email"
-              inputMode="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
-              className="mt-4 w-full rounded-xl border border-black/15 px-4 py-3 text-sm outline-none transition focus:border-[#00bf63] focus:ring-2 focus:ring-[#00bf63]/20"
-            />
+            {linkedinError && (
+              <p className="mt-2 text-xs font-medium text-red-500">
+                {linkedinError}
+              </p>
+            )}
             <button
               onClick={finish}
-              disabled={!email || submitting}
+              disabled={!isValidLinkedInUrl(linkedinUrl) || submitting}
               className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#00bf63] px-5 py-3 text-sm font-bold text-black transition hover:bg-[#00a857] disabled:opacity-40"
             >
               {submitting ? 'Submitting...' : 'Submit'}
@@ -206,42 +223,33 @@ export default function QuizModal() {
 }
 
 function StepChoice({
-  stepLabel,
   title,
   options,
   selected,
   onSelect,
-  footer,
 }: {
-  stepLabel: string;
   title: string;
   options: string[];
   selected: string;
   onSelect: (v: string) => void;
-  footer?: React.ReactNode;
 }) {
   return (
     <div>
-      <span className="text-xs font-bold uppercase tracking-wider text-[#00bf63]">
-        {stepLabel}
-      </span>
-      <h3 className="mt-1 text-xl font-bold tracking-tight">{title}</h3>
+      <h3 className="text-xl font-bold tracking-tight">{title}</h3>
       <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
         {options.map((o) => (
           <button
             key={o}
             onClick={() => onSelect(o)}
-            className={`rounded-xl border px-3 py-3 text-left text-sm font-medium transition ${
-              selected === o
+            className={`rounded-xl border px-3 py-3 text-left text-sm font-medium transition ${selected === o
                 ? 'border-[#00bf63] bg-[#00bf63]/10 text-black'
                 : 'border-black/12 text-black/70 hover:border-[#00bf63]/50'
-            }`}
+              }`}
           >
             {o}
           </button>
         ))}
       </div>
-      {footer}
     </div>
   );
 }

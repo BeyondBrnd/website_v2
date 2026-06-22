@@ -40,7 +40,7 @@ export const caseStudies: CaseStudy[] = [
   // ────────────────────────────────────────────────────────────────
   {
     slug: "vijayashree-venkat-humanalpha",
-    clientName: "Vijayashree Venkat",
+    clientName: "Co-founder & CEO at HumanAlpha",
     company: "HumanAlpha",
     cardImage: "/case-studies/vijayashree.png",
     cardImageDriveLink:
@@ -130,7 +130,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "yess-seed-raise",
     clientName: "Co-founder & VP, Yess",
     company: "Yess",
-    cardImage: "/case-studies/yess-hero.png",
+    cardImage: "/case-studies/yess.png",
     cardImageDriveLink:
       "https://drive.google.com/file/d/10Q-jxWhLh8jWVAMu93yni6rmFRNDmSf_/view?usp=drive_link",
     cardCaptionLines: [

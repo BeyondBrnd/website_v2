@@ -1,11 +1,9 @@
 'use client';
 
-// components/v2/WhyBeyondbrnd.tsx
-// "Why is Beyondbrnd the ONE for you?" — story copy on the left,
-// Bharti's photo on the right.
+// components/v2/WhyBeyondbrnd.tsx — V2.1 (Bharti feedback, item 6)
+// New story copy on the left, Bharti's photo on the right.
 //
-// 📸 IMAGE PLACEHOLDER: drop Bharti's photo into /public/bharti.jpg
-// (Drive link for the photo to be shared by Bharti — see brief, section 3).
+// 📸 IMAGE PLACEHOLDER: drop Bharti's photo into /public/bharti.jpeg
 
 import React from 'react';
 import Image from 'next/image';
@@ -21,33 +19,30 @@ export default function WhyBeyondbrnd() {
             <span className="text-[#00bf63]">ONE</span> for you?
           </h2>
 
-          <div className="mt-6 space-y-4 text-[15px] leading-7 text-black/70">
+          <div className="mt-6 space-y-4 text-base leading-7 text-black/70">
             <p>
-              Hi, I&apos;m Bharti. I&apos;ve spent over 4 years watching
-              brilliant founders get overlooked online.
+              Hi, I&apos;m Bharti, and I built Beyondbrnd on one uncomfortable
+              truth:
+            </p>
+            <p className="text-lg font-bold text-black">
+              The best founders in the room were losing deals to people half as
+              good, simply because their LinkedIn didn&apos;t reflect who they
+              actually were.
             </p>
             <p>
-              For example, a founder named Praveen Vasanthswamy — a financial
-              advisor and real estate builder for HNIs, NRIs and corporate
-              leaders — had 10 years of experience, but his LinkedIn was dead.
+              Over 4 years and 50+ founders later, I&apos;ve seen what a weak
+              LinkedIn profile actually costs. Not just in impressions, but in
+              deals not closed, investors not convinced, and partnerships that
+              never happened.
             </p>
             <p>
-              He told me how embarrassed he felt showing his LinkedIn profile
-              to a potential lead, and how he would fail to close deals because
-              of no digital presence.
+              Every word on your profile, every post we write in your voice,
+              every connection we build is engineered to make the right people
+              take you seriously and reach out.
             </p>
             <p className="font-semibold text-black">
-              We changed that narrative for him.
-            </p>
-            <p>
-              You shouldn&apos;t lose deals simply because your LinkedIn
-              profile isn&apos;t <em className="italic">impressive</em>.
-            </p>
-            <p>
-              That gap between how good you actually are and how you look on
-              LinkedIn? We built the exact service that fills it — we handle
-              your LinkedIn profile end-to-end so you can focus on signing new
-              deals.
+              If your LinkedIn doesn&apos;t reflect the business you&apos;ve
+              built, we do it for you.
             </p>
           </div>
         </div>

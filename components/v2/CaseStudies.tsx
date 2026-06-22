@@ -21,7 +21,7 @@ export default function CaseStudies() {
         <h2 className="text-center text-3xl font-extrabold tracking-tight sm:text-4xl">
           What makes Beyondbrnd <span className="text-[#00bf63]">Legit</span>?
         </h2>
-        <p className="mx-auto mt-3 max-w-xl text-center text-sm text-black/55">
+        <p className="mx-auto mt-3 max-w-xl text-center text-xl font-semibold text-black/55">
           Real founders. Real profiles. Real pipeline. Here&apos;s the proof.
         </p>
 

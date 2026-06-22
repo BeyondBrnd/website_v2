@@ -11,6 +11,7 @@ const images = [
   { src: '/testimonials/Sejal.png', name: 'Sejal' },
   { src: '/testimonials/Shreya.png', name: 'Shreya' },
   { src: '/testimonials/sandeep.png', name: 'Sandeep' },
+  { src: '/testimonials/Melvin.png', name: 'Melvin' },
 ]
 
 export default function Testimonials() {
@@ -49,7 +50,7 @@ export default function Testimonials() {
             What Clients say about{' '}
             <span className="text-[#00bf63]">Beyondbrnd</span> Services?
           </h2>
-          <p className="mt-3 text-sm text-black/60">
+          <p className="mt-3 text-xl font-semibold text-black/60">
             Real feedback from founders and experts we&apos;ve worked with.
           </p>
         </div>
@@ -104,9 +105,8 @@ export default function Testimonials() {
               <button
                 key={i}
                 onClick={() => setIndex(i)}
-                className={`h-2 rounded-full transition-all ${
-                  i === index ? 'w-6 bg-[#00bf63]' : 'w-2 bg-black/20'
-                }`}
+                className={`h-2 rounded-full transition-all ${i === index ? 'w-6 bg-[#00bf63]' : 'w-2 bg-black/20'
+                  }`}
                 aria-label={`Go to slide ${i + 1}`}
               />
             ))}

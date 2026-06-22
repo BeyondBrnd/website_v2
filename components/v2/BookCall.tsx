@@ -71,7 +71,7 @@ export default function BookCall() {
           Make your LinkedIn{' '}
           <em className="italic text-[#00bf63]">Impressive</em> today.
         </h2>
-        <p className="mx-auto mt-3 max-w-md text-center text-sm text-black/55">
+        <p className="mx-auto mt-3 max-w-md text-center text-xl font-semibold text-black/55">
           Pick a slot below — 30 minutes with Bharti, free, no fluff.
         </p>
 
