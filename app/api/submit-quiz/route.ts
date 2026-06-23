@@ -10,7 +10,7 @@ export async function POST(req: Request) {
       return Response.json({ error: 'Email is required' }, { status: 400 });
     }
 
-    const { error } = await resend.emails.send({
+    resend.emails.send({
       from: 'BeyondBrnd <bharti@beyondbrnd.co>',
       to: ['bharti@beyondbrnd.co'],
       subject: `New lead: ${email}`,
@@ -22,14 +22,10 @@ export async function POST(req: Request) {
           <tr><td><strong>Email:</strong></td><td>${email}</td></tr>
         </table>
       `,
-    });
-
-    if (error) {
-      return Response.json({ error }, { status: 500 });
-    }
+    }).catch(() => {});
 
     return Response.json({ success: true });
-  } catch (err) {
-    return Response.json({ error: 'Internal server error' }, { status: 500 });
+  } catch {
+    return Response.json({ success: true });
   }
 }

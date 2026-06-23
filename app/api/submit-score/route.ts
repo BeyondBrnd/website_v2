@@ -6,7 +6,7 @@ export async function POST(req: Request) {
   try {
     const { linkedinUrl, email, industry, goal, score, verdict, answers } = await req.json();
 
-    const { error } = await resend.emails.send({
+    resend.emails.send({
       from: 'BeyondBrnd <bharti@beyondbrnd.co>',
       to: ['bharti@beyondbrnd.co'],
       subject: `Score: ${score}/10${email ? ` — ${email}` : ''}`,
@@ -30,14 +30,10 @@ export async function POST(req: Request) {
         </table>
         ` : ''}
       `,
-    });
-
-    if (error) {
-      return Response.json({ error }, { status: 500 });
-    }
+    }).catch(() => {});
 
     return Response.json({ success: true });
-  } catch (err) {
-    return Response.json({ error: 'Internal server error' }, { status: 500 });
+  } catch {
+    return Response.json({ success: true });
   }
 }
