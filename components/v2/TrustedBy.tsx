@@ -1,28 +1,13 @@
 'use client';
 
-// components/v2/TrustedBy.tsx
-// "Trusted by Leaders & Teams at" — static two-row logo grid (no motion,
-// no grayscale, no opacity), like the reference screenshot.
-//
-// UNIFORM LOGO SIZING: every logo renders inside a fixed LOGO_W × LOGO_H box
-// with object-contain, so any uploaded image — portrait, landscape, square,
-// 4000px or 200px — is normalized to the exact same visual footprint.
-//
-// HOW TO ADD LOGOS: drop image files into /public/client_logos/ and set the
-// `src` for each brand below (png/svg/jpg/webp all fine — size irrelevant).
-// Brands without a src (or whose file is missing) fall back to a text
-// wordmark, so the section never breaks.
-
 import React, { useState } from 'react';
 
-// ── Tune the uniform logo box here ──────────────────────────────
-const LOGO_W = 150; // px — width of every logo slot
-const LOGO_H = 55; // px — height of every logo slot
-// ────────────────────────────────────────────────────────────────
+const LOGO_W = 150;
+const LOGO_H = 55;
 
 type Brand = {
   name: string;
-  src?: string; // e.g. '/client_logos/decathlon.png'
+  src?: string;
 };
 
 const BRANDS: Brand[] = [
@@ -39,6 +24,8 @@ const BRANDS: Brand[] = [
 ];
 
 export default function TrustedBy() {
+  const row = [...BRANDS, ...BRANDS];
+
   return (
     <section className="glass-section relative py-14">
       <div className="mx-auto max-w-6xl px-4">
@@ -46,23 +33,68 @@ export default function TrustedBy() {
           Trusted by Leaders &amp; Teams at
         </h2>
 
-        <div className="mt-10 grid grid-cols-2 items-center justify-center gap-x-8 gap-y-8 sm:grid-cols-3 md:grid-cols-5 md:gap-x-12">
-          {BRANDS.map((b) => (
-            <div key={b.name} className="flex justify-center">
-              <LogoSlot brand={b} />
-            </div>
-          ))}
+        <div className="bb-fade-x relative mt-8 overflow-hidden">
+          <ul className="bb-row">
+            {row.map((b, i) => (
+              <li key={i}>
+                <LogoSlot brand={b} />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
+
+      <style jsx>{`
+        .bb-fade-x {
+          mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 18%,
+            black 82%,
+            transparent 100%
+          );
+          -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 18%,
+            black 82%,
+            transparent 100%
+          );
+        }
+        .bb-row {
+          display: flex;
+          align-items: center;
+          gap: 48px;
+          width: max-content;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          animation: bb-marquee 32s linear infinite;
+        }
+        .bb-row:hover {
+          animation-play-state: paused;
+        }
+        @keyframes bb-marquee {
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .bb-row {
+            animation: none;
+            flex-wrap: wrap;
+            width: 100%;
+            justify-content: center;
+          }
+        }
+      `}</style>
     </section>
   );
 }
 
-/**
- * LogoSlot — the uniform box. Fixed dimensions for every brand;
- * object-contain scales any image to fit inside without cropping
- * or distortion. Missing/broken images fall back to a wordmark.
- */
 function LogoSlot({ brand }: { brand: Brand }) {
   const [failed, setFailed] = useState(false);
   const showImage = Boolean(brand.src) && !failed;
@@ -74,8 +106,6 @@ function LogoSlot({ brand }: { brand: Brand }) {
       title={brand.name}
     >
       {showImage ? (
-        // Plain <img> (not next/image) so arbitrary source dimensions
-        // never require width/height props — the box does the sizing.
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={brand.src}

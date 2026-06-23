@@ -84,7 +84,31 @@ export default function ScoreWidget() {
       '3d': 5.5,
     };
     s += recencyPoints[recency as Recency];
-    setScore(Math.max(1, Math.min(10, Math.round(s))));
+    const finalScore = Math.max(1, Math.min(10, Math.round(s)));
+    setScore(finalScore);
+    notifyBharti(finalScore);
+  };
+
+  const notifyBharti = async (finalScore: number) => {
+    try {
+      const saved = sessionStorage.getItem('bb-quiz-answers');
+      const quiz = saved ? JSON.parse(saved) : {};
+      await fetch('/api/submit-score', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          linkedinUrl,
+          email: quiz.email || '',
+          industry: quiz.industry || '',
+          goal: quiz.goal || '',
+          score: finalScore,
+          verdict: getVerdict(finalScore),
+          answers: { hasPhoto, hasKeywords, hasExperienceText, recency },
+        }),
+      });
+    } catch {
+      // silently ignore
+    }
   };
 
   const handleSubmit = () => {
@@ -114,16 +138,14 @@ export default function ScoreWidget() {
     setRecency(null);
   };
 
-  const verdict =
-    score === null
-      ? ''
-      : score <= 3
-        ? 'Your profile is costing you deals. Leads who check it are bouncing.'
-        : score <= 6
-          ? 'You look okay — but "okay" doesn\'t sign deals. There\'s a clear gap to close.'
-          : score <= 8
-            ? 'Solid foundation. The right strategy turns this into a deal-signing machine.'
-            : 'Impressive! Now let\'s make sure it converts attention into pipeline.';
+  const getVerdict = (s: number) =>
+    s <= 3
+      ? "Your profile is costing you deals. Leads who check it are bouncing."
+      : s <= 6
+        ? "You look okay — but \"okay\" doesn't sign deals. There's a clear gap to close."
+        : s <= 8
+          ? "Solid foundation. The right strategy turns this into a deal-signing machine."
+          : "Impressive! Now let's make sure it converts attention into pipeline.";
 
   return (
     <div
@@ -265,7 +287,7 @@ export default function ScoreWidget() {
               <span className="text-base font-semibold text-black/40">/10</span>
             </div>
           </div>
-          <p className="mt-3 text-sm font-medium text-black/70">{verdict}</p>
+          <p className="mt-3 text-sm font-medium text-black/70">{getVerdict(score)}</p>
           <a
             href="#book-call"
             className="mt-4 inline-flex w-full items-center justify-center rounded-xl bg-[#00bf63] px-5 py-3 text-sm font-bold text-black transition hover:bg-[#00a857]"
