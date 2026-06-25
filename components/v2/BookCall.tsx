@@ -56,6 +56,7 @@ export default function BookCall() {
       elementOrSelector: '#bb-cal-inline',
       calLink: CAL_LINK,
       layout: 'month_view',
+      prefill: { name: '', email: '' },
     });
     Cal.ns['30min']('ui', {
       cssVarsPerTheme: { light: { 'cal-brand': '#00bf63' } },
