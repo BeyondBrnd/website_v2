@@ -49,9 +49,13 @@ export default function BeyondbrndLanding() {
 
       <Testimonials />
 
-      <BookCall />
+      <div id="contact">
+        <BookCall />
+      </div>
 
-      <FAQ />
+      <div id="faqs">
+        <FAQ />
+      </div>
 
       <Footer />
     </div>
