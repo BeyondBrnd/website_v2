@@ -43,7 +43,7 @@ export default function BeyondbrndLanding() {
 
       <Services />
 
-      <div id="case-studies">
+      <div id="casestudies">
         <CaseStudies />
       </div>
 
