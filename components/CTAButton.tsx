@@ -18,7 +18,7 @@ export default function CTAButton({
   onClick,
   className = '',
   label = 'Make my LinkedIn Impressive',
-  calUrl = 'https://cal.com/bharti-from-beyondbrnd/30min?overlayCalendar=true',
+  calUrl = 'https://cal.com/beyondbrnd/30min?overlayCalendar=true',
 }: CTAButtonProps) {
   const handleClick = () => {
     if (onClick) {
