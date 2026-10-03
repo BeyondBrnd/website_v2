@@ -7,7 +7,7 @@
 
 import React, { useEffect, useRef } from 'react';
 
-const CAL_LINK = 'bharti-from-beyondbrnd/30min';
+const CAL_LINK = 'beyondbrnd/30min';
 
 export default function BookCall() {
   const loaded = useRef(false);
